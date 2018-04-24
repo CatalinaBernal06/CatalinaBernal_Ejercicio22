@@ -9,9 +9,8 @@ int main(){
   double x = 0;
   double delta_x = 0.01;
   double delta_t = 0.0001;
-  double T = 0.5;
   int N_x = 2.0/delta_x + 1;
-  int N_t = T/delta_t;
+  int N_t = 0.5/delta_t;
   double *u = new double[ N_x ];
   double *u_past = new double [ N_x];
   
@@ -23,11 +22,11 @@ int main(){
    while(u[N_x/2] > 0.5){
        for(int i = 1; i<N_x - 1; i++){
 	 u[i] = u_past[i] + D*((delta_t/(delta_x*delta_x))*u_past[i+1]-2*u_past[i]+u_past[i-1]); 
-       }
     }
 
-   for(int i = 0; i <N_x ; i++){
+   for(int i = 1; i <N_x - 1 ; i++){
      u_past[i] = u[i];
+   }
    }
     x = 0;
 
